@@ -8,6 +8,13 @@ public class MatrixSorter {
     // Q3 = Not Urgent + Important (Figure out when to do or move it into another quadrant)
     // Q4 = Not Urgent + Not Important ("Do last")
 
+    //Important is anything that's over 5% of the grade
+    //Urgent assignements are due in 3 days or less
+
+    //Special Rules:
+    //If a long assignment is due in a week, it's urgent
+    //If a regular assignment is due tomorrow or the same day, it's important
+
     private static boolean isUrgent(Assignment a) {
         long days = a.daysUntilDue();
 

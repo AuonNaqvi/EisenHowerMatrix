@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class App {
 
-    // One list per quadrant — assignments get sorted into these
+    // One list per quadrant - assignments get sorted into these
     static ArrayList<Assignment> q1 = new ArrayList<>();
     static ArrayList<Assignment> q2 = new ArrayList<>();
     static ArrayList<Assignment> q3 = new ArrayList<>();
@@ -37,7 +37,7 @@ public class App {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid choice — type 1, 2, or 3.");
+                    System.out.println("Invalid choice - type 1, 2, or 3.");
             }
         }
     }
@@ -54,7 +54,7 @@ public class App {
         System.out.print("Assignment name: ");
         String name = scanner.nextLine().trim();
 
-        // Grade percent — keep asking until they enter a valid number
+        // Grade percent - keep asking until they enter a valid number
         double gradePercent = 0;
         while (true) {
             System.out.print("Grade % this is worth in your class (e.g. 25): ");
@@ -66,7 +66,7 @@ public class App {
             }
         }
 
-        // Due date — keep asking until they enter a valid date
+        // Due date - keep asking until they enter a valid date
         LocalDate dueDate = null;
         while (dueDate == null) {
             System.out.print("Due date (yyyy-MM-dd, e.g. 2026-09-10): ");
@@ -80,7 +80,7 @@ public class App {
         // Assignment type
         String type = "";
         while (!type.equals("normal") && !type.equals("long")) {
-            System.out.print("Assignment type — 'normal' (homework, quiz) or 'long' (project, paper): ");
+            System.out.print("Assignment type - 'normal' (homework, quiz) or 'long' (project, paper): ");
             type = scanner.nextLine().trim().toLowerCase();
             if (!type.equals("normal") && !type.equals("long")) {
                 System.out.println("Please type exactly: normal  or  long");
