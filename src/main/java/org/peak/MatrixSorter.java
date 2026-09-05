@@ -1,46 +1,54 @@
 package org.peak;
 
+import java.util.ArrayList;
+
 public class MatrixSorter {
 
-    // Sorts assignments by time due vs importance
-    // Q1 = Urgent + Important (Do Now)
-    // Q2 = Urgent + Not Important (Do later?)
-    // Q3 = Not Urgent + Important (Figure out when to do or move it into another quadrant)
-    // Q4 = Not Urgent + Not Important ("Do last")
+    public static int getQuadrant(Assignment a, ArrayList<SchoolClass> classes) {
+        boolean urgent    = isUrgent(a, classes);
+        boolean important = isImportant(a, classes);
 
-    //Important is anything that's over 5% of the grade
-    //Urgent assignements are due in 3 days or less
+        if (urgent && important)   return 1;
+        if (urgent && !important)  return 2;
+        if (!urgent && important)  return 3;
+        return 4;
+    }
 
-    //Special Rules:
-    //If a long assignment is due in a week, it's urgent
-    //If a regular assignment is due tomorrow or the same day, it's important
-
-    private static boolean isUrgent(Assignment a) {
+    private static boolean isUrgent(Assignment a, ArrayList<SchoolClass> classes) {
         long days = a.daysUntilDue();
 
-        //Type based rules
-        if (a.getName().equals("long")) {
+        // Look up the category to get its type
+        String type = getCategoryType(a, classes);
+
+        if (type.equals("long")) {
             return days <= 7;
         } else {
-            return days <= 3; //Normal assignments (not projects or long assignments)
+            return days <= 3; // "normal" is the default
         }
     }
 
-    private static boolean isImportant(Assignment a) {
-        //Override rules: If due today or due tomorrow, automatically put in important
+    private static boolean isImportant(Assignment a, ArrayList<SchoolClass> classes) {
         long days = a.daysUntilDue();
-        if (days <= 1) return true;
 
-        return a.getGradePercent() > 5.0;
+        // Override: due today or tomorrow = always important regardless of type
+        if (days <= 1) return true;
+        for (SchoolClass sc : classes) {
+            if (sc.getName().equalsIgnoreCase(a.getClassName())) {
+                Category cat = sc.findCategory(a.getCategoryName());
+                if (cat != null) return cat.isImportant();
+            }
+        }
+        return false;
     }
 
-    public static int getQuadrant(Assignment a) {
-        boolean urgent = isUrgent(a);
-        boolean important = isImportant(a);
-
-        if (urgent && important) return 1;
-        if (urgent && !important) return 2;
-        if (!urgent && important) return 3;
-        return 4;
+    // Looks up the type from the category — defaults to "normal" if not found
+    private static String getCategoryType(Assignment a, ArrayList<SchoolClass> classes) {
+        for (SchoolClass sc : classes) {
+            if (sc.getName().equalsIgnoreCase(a.getClassName())) {
+                Category cat = sc.findCategory(a.getCategoryName());
+                if (cat != null) return cat.getType();
+            }
+        }
+        return "normal";
     }
 }

@@ -1,31 +1,28 @@
 package org.peak;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Assignment {
+
     private String name;
     private LocalDate dueDate;
-    private double gradePercent;
-    private String type;
+    private String className;
+    private String categoryName;
 
-    //Constructor
-    public Assignment(String name, LocalDate dueDate, double gradePercent, String type) {
+    public Assignment(String name, LocalDate dueDate, String className, String categoryName) {
         this.name = name;
         this.dueDate = dueDate;
-        this.gradePercent = gradePercent;
-        this.type = type;
+        this.className = className;
+        this.categoryName = categoryName;
     }
 
-    // Getters
-    public String getName() { return name; }
-    public LocalDate getDueDate() { return dueDate; }
-    public double getGradePercent() { return gradePercent; }
-    public String getType() { return type; }
+    public String getName()         { return name; }
+    public LocalDate getDueDate()   { return dueDate; }
+    public String getClassName()    { return className; }
+    public String getCategoryName() { return categoryName; }
 
-    // Helpers: Time till due
     public long daysUntilDue() {
         return ChronoUnit.DAYS.between(LocalDate.now(), dueDate);
     }
-
-
 }
