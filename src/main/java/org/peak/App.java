@@ -19,6 +19,11 @@ public class App {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static void main(String[] args) {
+
+        // Pull latest CSVs from GitHub before loading anything
+        GitHubSync.pull();
+
+        // Load everything on startup
         classes = FileManager.loadClasses();
         FileManager.loadCategories(classes);
         FileManager.loadActive(q1, q2, q3, q4, classes);
@@ -41,11 +46,13 @@ public class App {
                 case "4": completeAssignment(); break;
                 case "5": MatrixDisplay.printCompleted(completed); break;
                 case "6":
-                    System.out.println("It's so peak!");
+                    // Push updated CSVs to GitHub before closing
+                    GitHubSync.push();
+                    System.out.println("Goodbye! Good luck with your assignments.");
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid choice - type a number 1 through 6.");
+                    System.out.println("Invalid choice — type a number 1 through 6.");
             }
         }
     }
@@ -215,7 +222,7 @@ public class App {
         FileManager.saveActive(q1, q2, q3, q4);
         FileManager.saveCompleted(done);
 
-        System.out.println("✓ \"" + done.getName() + "\" marked complete! Nice work 🎉");
+        System.out.println("✓ \"" + done.getName() + "\" marked complete");
     }
 
     // --- HELPER: PICK / CREATE CLASS --------------------------
