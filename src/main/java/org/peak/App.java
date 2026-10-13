@@ -52,7 +52,7 @@ public class App {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid choice — type a number 1 through 6.");
+                    System.out.println("Invalid choice, type a number 1 through 6.");
             }
         }
     }
@@ -101,7 +101,7 @@ public class App {
 
         classes.add(new SchoolClass(name));
         FileManager.saveClasses(classes);
-        System.out.println("✓ Class \"" + name + "\" added.");
+        System.out.println(" Class \"" + name + "\" added.");
     }
 
     private static void addCategory() {
@@ -129,7 +129,7 @@ public class App {
         sc.addCategory(cat);
         FileManager.saveCategories(classes);
 
-        System.out.println("✓ Category \"" + catName + "\" ["
+        System.out.println(" Category \"" + catName + "\" ["
                 + cat.getImportanceLabel() + " / " + type + "] added to " + sc.getName() + ".");
     }
 
@@ -186,7 +186,7 @@ public class App {
         }
 
         FileManager.saveActive(q1, q2, q3, q4);
-        System.out.println("✓ Added \"" + name + "\" → "
+        System.out.println(" Added \"" + name + "\" → "
                 + sc.getName() + " > " + cat.getName()
                 + " → Q" + quadrant);
     }
@@ -222,7 +222,7 @@ public class App {
         FileManager.saveActive(q1, q2, q3, q4);
         FileManager.saveCompleted(done);
 
-        System.out.println("✓ \"" + done.getName() + "\" marked complete");
+        System.out.println(" \"" + done.getName() + "\" marked complete");
     }
 
     // --- HELPER: PICK / CREATE CLASS --------------------------
@@ -253,7 +253,7 @@ public class App {
             SchoolClass newClass = new SchoolClass(input);
             classes.add(newClass);
             FileManager.saveClasses(classes);
-            System.out.println("✓ New class \"" + input + "\" created.");
+            System.out.println(" New class \"" + input + "\" created.");
             return newClass;
         }
     }
@@ -311,7 +311,7 @@ public class App {
             Category newCat = new Category(input, sc.getName(), important, type);
             sc.addCategory(newCat);
             FileManager.saveCategories(classes);
-            System.out.println("✓ New category \"" + input + "\" ["
+            System.out.println(" New category \"" + input + "\" ["
                     + newCat.getImportanceLabel() + " / " + type + "] created.");
             return newCat;
         }

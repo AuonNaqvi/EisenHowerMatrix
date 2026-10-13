@@ -1,13 +1,17 @@
 Discussion,IDS 312,false,normal
 Homework Assignment,IDS 312,false,normal
+Quiz,IDS 312,true,normal
 PrairieLearn Homework,CS 418,false,normal
 In-class Worksheet,CS 418,false,normal
 Discussion,CS 418,false,normal
-Coding Excercise,CS 418,false,normal
+Coding Excercise,CS 418,true,long
+Group Project,CS 418,true,long
 Assignment 1: Data Collection,CS 424,true,long
 Assignment 2: Sketching and Visualization,CS 424,true,long
 Assignment 3: Evaluation,CS 424,true,long
 Assignment 4: Findings,CS 424,true,long
+Exam,CS 424,true,long
 Homework,Stat 481,false,normal
 Quiz,Stat 481,false,normal
 Project,Stat 481,true,long
+Exam,Stat 481,true,long
